@@ -1,0 +1,36 @@
+{
+  "projectName": "template-c1-next",
+  "framework": "Next.js",
+  "language": "TypeScript",
+  "buildTools": ["PostCSS", "ESLint", "Prettier", "Turbopack"],
+  "routes": [],
+  "env": [
+    {
+      "name": "THESYS_API_KEY",
+      "foundIn": ["README.md"],
+      "description": "Thesys API key used to authenticate calls to Thesys AI service"
+    },
+    {
+      "name": "GOOGLE_API_KEY",
+      "foundIn": ["README.md"],
+      "description": "Google API key for Custom Search or other Google services"
+    },
+    {
+      "name": "GOOGLE_CX",
+      "foundIn": ["README.md"],
+      "description": "Google Custom Search CX (Search Engine ID)"
+    },
+    {
+      "name": "GEMINI_API_KEY",
+      "foundIn": ["README.md"],
+      "description": "Gemini API key for Google-hosted Gemini models"
+    }
+  ],
+  "externalAPIs": [],
+  "packageScripts": [],
+  "files": ["README.md"],
+  "notes": [
+    "This manifest is based on the summary and currently detected files.",
+    "The repository at present contains only README.md. As source files are added under src/app/** and package.json, rerun scripts/generate_manifest.js to update this manifest with routes, scripts, and external API mappings."
+  ]
+}
