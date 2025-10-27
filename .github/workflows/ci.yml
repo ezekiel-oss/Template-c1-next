@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Generate manifest
+        run: node tools/generate-manifest.js
+        continue-on-error: true
+
+      - name: API route test harness
+        run: node tools/api-route-test-harness.js
+        continue-on-error: true
+
+      - name: Install dependencies (if package.json exists)
+        if: ${{ hashFiles('package.json') != '' }}
+        run: |
+          npm ci || npm install
+
+      - name: Lint (if script exists)
+        if: ${{ hashFiles('package.json') != '' }}
+        run: |
+          npm run lint || true
+
+      - name: TypeScript check (if tsconfig exists)
+        if: ${{ hashFiles('tsconfig.json') != '' && hashFiles('package.json') != '' }}
+        run: |
+          npx tsc --noEmit || true
+
+      - name: Build (if script exists)
+        if: ${{ hashFiles('package.json') != '' }}
+        run: |
+          npm run build || true

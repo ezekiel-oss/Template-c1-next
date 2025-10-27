@@ -1,0 +1,96 @@
+{
+  "manifestVersion": 1,
+  "generatedAt": "2025-10-27T00:00:00Z",
+  "source": "README summary and repository scan",
+  "project": {
+    "name": "template-c1-next",
+    "framework": "Next.js",
+    "language": "TypeScript"
+  },
+  "buildTools": ["PostCSS", "ESLint", "Prettier"],
+  "packageScripts": [
+    {
+      "name": "dev",
+      "command": "next dev --turbopack",
+      "source": "README summary"
+    },
+    {
+      "name": "build",
+      "command": "next build",
+      "source": "README summary"
+    },
+    {
+      "name": "start",
+      "command": "next start",
+      "source": "README summary"
+    },
+    {
+      "name": "lint",
+      "command": "next lint",
+      "source": "README summary"
+    },
+    {
+      "name": "format:fix",
+      "command": "prettier --write .",
+      "source": "README summary"
+    }
+  ],
+  "environmentVariables": [
+    {
+      "name": "THESYS_API_KEY",
+      "description": "API key for Thesys AI service",
+      "foundIn": ["README.md"],
+      "mapsTo": ["thesys.dev API authorization (Bearer token)"],
+      "example": "[your_thesys_api_key]"
+    },
+    {
+      "name": "GOOGLE_API_KEY",
+      "description": "API key for Google Custom Search",
+      "foundIn": ["README.md"],
+      "mapsTo": ["Google Custom Search API"],
+      "example": "[your_google_api_key]"
+    },
+    {
+      "name": "GOOGLE_CX",
+      "description": "Google Custom Search Engine ID",
+      "foundIn": ["README.md"],
+      "mapsTo": ["Google Custom Search API"],
+      "example": "[your_google_custom_search_id]"
+    },
+    {
+      "name": "GEMINI_API_KEY",
+      "description": "API key for Gemini (Google Generative AI)",
+      "foundIn": ["README.md"],
+      "mapsTo": ["Gemini SDK/API"],
+      "example": "[your_gemini_api_key]"
+    }
+  ],
+  "routes": [],
+  "externalApis": [
+    {
+      "name": "Google Custom Search",
+      "endpoints": ["https://www.googleapis.com/customsearch/v1"],
+      "env": ["GOOGLE_API_KEY", "GOOGLE_CX"],
+      "detectedIn": [],
+      "confidence": "high"
+    },
+    {
+      "name": "Thesys AI",
+      "endpoints": ["https://api.thesys.dev/"],
+      "env": ["THESYS_API_KEY"],
+      "detectedIn": [],
+      "confidence": "medium"
+    },
+    {
+      "name": "Gemini (Google Generative AI)",
+      "endpoints": [],
+      "env": ["GEMINI_API_KEY"],
+      "detectedIn": [],
+      "confidence": "medium"
+    }
+  ],
+  "notes": [
+    "This manifest was generated using the provided README summary. A full repository scan was not possible because only README.md is present in the current filesystem snapshot.",
+    "To enrich this manifest, run tools/generate-manifest.js after adding project files."
+  ]
+}
