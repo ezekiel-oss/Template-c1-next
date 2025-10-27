@@ -183,4 +183,52 @@ If you want that, tell me and I'll produce the manifest.
 
 ---
 
-_End of summary._
+---
+
+## 11) Deployment (Vercel)
+
+Follow these steps to deploy to Vercel:
+
+1. Create environment variables:
+   - Add the required env vars from `.env.example` in your Vercel project settings:
+     - `THESYS_API_KEY`
+     - `GOOGLE_API_KEY`
+     - `GOOGLE_CX`
+     - `GEMINI_API_KEY`
+   - Ensure names match exactly what the code expects.
+
+2. Link the GitHub repo:
+   - In Vercel, click “New Project” → Import from GitHub → select `ezekiel-oss/Template-c1-next`.
+   - Choose the branch (e.g., `main`).
+
+3. Set build & output settings:
+   - Build command: `npm run build` (or `pnpm build` if using pnpm).
+   - Output directory: leave default (Next.js).
+   - Environment: `production` or your desired environment.
+
+4. Deploy preview and production:
+   - On each push to `main`, Vercel will build and deploy automatically.
+   - Preview branches will get their own preview URLs.
+
+5. Test the deployment:
+   - Visit the live URL, e.g., `https://template-c1-next.vercel.app`.
+   - Test pages, API routes (`/api/...`), and integrations (Thesys/Google/Gemini).
+   - Confirm environment variables are working by making a real AI request.
+
+6. Monitor & iterate:
+   - Use Vercel’s dashboard to monitor logs, errors, and performance.
+   - Configure additional serverless functions if needed.
+   - Update env variables and scale plan as necessary.
+
+### Optional: GitHub Actions CI & Deploy
+
+If you want to build/test before deploying, use a workflow that:
+- Runs on every push to `main`.
+- Installs dependencies, runs lint and build, then deploys to Vercel (via Vercel Git integration or the Vercel action).
+
+This repository includes a workflow:
+- `.github/workflows/project-validation.yml` — generates a manifest, runs TypeScript/noEmit, lint, build checks, and enumerates API routes.
+- `.github/workflows/deploy.yml` — CI & deploy with conditional steps. Ensure these GitHub Secrets are set:
+  - `VERCEL_TOKEN`
+  - `VERCEL_ORG_ID`
+  - `VERCEL_PROJECT_ID`_
